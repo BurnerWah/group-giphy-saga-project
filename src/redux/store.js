@@ -8,10 +8,14 @@ import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
 
 const searchResults = (state = [], action) => {
-  if (action.type === "SET_SEARCH_RESULTS") {
-    return action.payload;
+  switch (action.type) {
+    case "SET_SEARCH_RESULTS":
+      return action.payload;
+    case "CLEAR_SEARCH_RESULTS":
+      return [];
+    default:
+      return state;
   }
-  return state;
 };
 
 const categories = (state = [], action) => {
