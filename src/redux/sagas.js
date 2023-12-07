@@ -21,7 +21,17 @@ function* getCategories() {
   }
 }
 
+function* getFavorites() {
+  try {
+    const response = yield axios.get("/api/favorites");
+    yield put({ type: "SET_FAVORITES", payload: response.data });
+  } catch (error) {
+    console.log("Error with favorites request:", error);
+  }
+}
+
 export default function* rootSaga() {
   yield takeLatest("SAGA/SEARCH", search);
   yield takeLatest("SAGA/GET_CATEGORIES", getCategories);
+  yield takeLatest("SAGA/GET_FAVORITES", getFavorites);
 }
