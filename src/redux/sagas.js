@@ -41,7 +41,7 @@ function* addFavorite(action) {
 
 function* setCategory(action) {
   try {
-    yield axios.put(`/api/favorites/${action.payload.ud}`, {
+    yield axios.put(`/api/favorites/${action.payload.id}`, {
       category: action.payload.category,
     });
     yield put({ type: "SAGA/GET_FAVORITES" });
