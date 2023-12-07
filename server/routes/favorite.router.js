@@ -4,8 +4,14 @@ const pool = require("../modules/pool");
 const router = express.Router();
 
 // return all favorite images
-router.get("/", (req, res) => {
-  res.sendStatus(200);
+router.get("/", async (req, res) => {
+  try {
+    const results = await pool.query(`SELECT * FROM "favorites"`);
+    res.send(results.rows);
+  } catch (error) {
+    console.log("Error getting favorites from database:", error);
+    res.sendStatus(500);
+  }
 });
 
 // add a new favorite
