@@ -47,7 +47,7 @@ router.put("/:id", async (req, res) => {
     pool.query(
       /*sql*/ `
         UPDATE "favorites"
-        SET "category" = $1
+        SET "category_id" = $1
         WHERE "id" = $2;
       `,
       [req.body.category, req.params.id],
