@@ -1,11 +1,23 @@
+import { useEffect } from "react";
 import "./FavoritesView.css";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function FavoritesView() {
-  const getImages = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const imgReducer = useSelector((store) => store);
+  const searchResults = useSelector((store) => store.searchResults);
+  const categories = useSelector((store) => store.categories);
+  const favorites = useSelector((store) => store.favorites);
+  console.log("The store selector:", searchResults);
+
+  useEffect(() => {
+    getFavorites();
+  });
+
+  const getFavorites = () => {
+    dispatch({
+      type: "SAGA/GET_FAVORITES",
+    });
   };
   return (
     <>
