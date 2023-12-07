@@ -30,8 +30,18 @@ function* getFavorites() {
   }
 }
 
+function* addFavorite(action) {
+  try {
+    yield axios.post("/api/favorites", { id: action.payload });
+    yield put({ type: "SAGA/GET_FAVORITES" });
+  } catch (error) {
+    console.log("Error with add favorite request:", error);
+  }
+}
+
 export default function* rootSaga() {
   yield takeLatest("SAGA/SEARCH", search);
   yield takeLatest("SAGA/GET_CATEGORIES", getCategories);
   yield takeLatest("SAGA/GET_FAVORITES", getFavorites);
+  yield takeLatest("SAGA/ADD_FAVORITE", addFavorite);
 }
