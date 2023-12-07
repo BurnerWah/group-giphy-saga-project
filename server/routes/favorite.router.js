@@ -15,8 +15,22 @@ router.get("/", async (req, res) => {
 });
 
 // add a new favorite
-router.post("/", (req, res) => {
-  res.sendStatus(201);
+router.post("/", async (req, res) => {
+  const giphy_id = req.body.id;
+  // Require the ID to be set
+  if (!giphy_id) {
+    res.sendStatus(400);
+    return;
+  }
+  try {
+    await pool.query(`INSERT INTO "favorites" ("giphy_id") VALUES ($1)`, [
+      giphy_id,
+    ]);
+    res.sendStatus(201);
+  } catch (error) {
+    console.log("Error adding favorite to database:", error);
+    res.sendStatus(500);
+  }
 });
 
 // update a favorite's associated category
