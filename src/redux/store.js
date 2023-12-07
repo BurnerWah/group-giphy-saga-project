@@ -14,11 +14,27 @@ const searchResults = (state = [], action) => {
   return state;
 };
 
+const categories = (state = [], action) => {
+  if (action.type === "SET_CATEGORIES") {
+    return action.payload;
+  }
+  return state;
+};
+
+const favorites = (state = [], action) => {
+  if (action.type === "SET_FAVORITES") {
+    return action.payload;
+  }
+  return state;
+};
+
 const saga = createSagaMiddleware();
 
 const store = createStore(
   combineReducers({
     searchResults,
+    categories,
+    favorites,
   }),
   applyMiddleware(logger, saga),
 );
