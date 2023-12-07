@@ -6,7 +6,10 @@ const router = express.Router();
 // return all favorite images
 router.get("/", async (req, res) => {
   try {
-    const results = await pool.query(`SELECT * FROM "favorites"`);
+    const results = await pool.query(/*sql*/ `
+      SELECT *
+      FROM "favorites";
+    `);
     res.send(results.rows);
   } catch (error) {
     console.log("Error getting favorites from database:", error);
@@ -23,9 +26,14 @@ router.post("/", async (req, res) => {
     return;
   }
   try {
-    await pool.query(`INSERT INTO "favorites" ("giphy_id") VALUES ($1)`, [
-      giphy_id,
-    ]);
+    await pool.query(
+      /*sql*/ `
+        INSERT INTO
+          "favorites" ("giphy_id")
+        VALUES ($1);
+      `,
+      [giphy_id],
+    );
     res.sendStatus(201);
   } catch (error) {
     console.log("Error adding favorite to database:", error);
