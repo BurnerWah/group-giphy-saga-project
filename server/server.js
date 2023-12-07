@@ -1,6 +1,7 @@
 const express = require("express");
 const favoriteRouter = require("./routes/favorite.router");
 const categoryRouter = require("./routes/category.router");
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
