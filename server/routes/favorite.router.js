@@ -34,9 +34,21 @@ router.post("/", async (req, res) => {
 });
 
 // update a favorite's associated category
-router.put("/:id", (req, res) => {
-  // req.body should contain a category_id to add to this favorite image
-  res.sendStatus(200);
+router.put("/:id", async (req, res) => {
+  try {
+    pool.query(
+      /*sql*/ `
+        UPDATE "favorites"
+        SET "category" = $1
+        WHERE "id" = $2;
+      `,
+      [req.body.category, req.params.id],
+    );
+    res.sendStatus(200);
+  } catch (error) {
+    console.log("Error updating favorite in database:", error);
+    res.sendStatus(500);
+  }
 });
 
 // delete a favorite
