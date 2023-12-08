@@ -13,7 +13,7 @@ function App() {
         <Route exact path="/">
           <SearchFrom />
         </Route>
-        <Route exact path="/api/favorites">
+        <Route exact path="/favorites">
           <FavoritesView />
         </Route>
       </Router>
