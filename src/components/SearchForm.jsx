@@ -40,7 +40,7 @@ export default function SearchFrom() {
         {/* mapping through are search results we held in our reducer and rending the img */}
       </form>
       {searchResults.map((gif) => (
-        <div>
+        <div className="images">
           <img src={gif.images.fixed_height.url}></img>
           <button onClick={() => setFavorite(gif.id)}>favorite</button>
         </div>
