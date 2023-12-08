@@ -20,9 +20,12 @@ export default function SearchFrom() {
     dispatch({ type: "SAGA/SEARCH", payload: search });
   };
 
-  // const setFavorite = () => {
-
-  // }
+  const setFavorite = (id) => {
+    dispatch({
+      type: "SAGA/ADD_FAVORITE",
+      payload: id,
+    });
+  };
 
   return (
     <div>
@@ -39,7 +42,7 @@ export default function SearchFrom() {
       {searchResults.map((gif) => (
         <div>
           <img src={gif.images.fixed_height.url}></img>
-          {/* <button onClick={setFavorite}>favorite</button> */}
+          <button onClick={() => setFavorite(gif.id)}>favorite</button>
         </div>
       ))}
     </div>
