@@ -10,10 +10,10 @@ function App() {
       <h1>Giphy Search!</h1>
 
       <Router>
-        <Route path="/">
+        <Route exact path="/">
           <SearchFrom />
         </Route>
-        <Route path="favorites">
+        <Route exact path="/api/favorites">
           <FavoritesView />
         </Route>
       </Router>
