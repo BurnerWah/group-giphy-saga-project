@@ -26,7 +26,7 @@ export default function SearchFrom() {
       payload: id,
     });
   };
-
+//adding input with the value of whatever the string we search is 
   return (
     <div>
       <form onSubmit={newSearch}>
@@ -42,6 +42,7 @@ export default function SearchFrom() {
       {searchResults.map((gif) => (
         <div className="images">
           <img src={gif.images.fixed_height.url}></img>
+          {/* targets the gif id/unique identifier so it knows what gif to save to favorites */}
           <button onClick={() => setFavorite(gif.id)}>favorite</button>
         </div>
       ))}
