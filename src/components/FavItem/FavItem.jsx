@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function FavItem({ favorite }) {
-  const [category, setCategory] = useState(0);
+  const [category, setCategory] = useState(favorite.category_id);
   const dispatch = useDispatch(0);
   const categories = useSelector((store) => store.categories);
 
