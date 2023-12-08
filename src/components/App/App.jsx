@@ -4,12 +4,17 @@ import {
   HashRouter as Router,
   Route,
 } from "react-router-dom/cjs/react-router-dom.min";
-function App() {
+
+import Nav from "../Nav";
+
+  function App() {
   return (
     <div>
       <h1>Giphy Search!</h1>
+     
 
       <Router>
+        <Nav />
         <Route exact path="/">
           <SearchFrom />
         </Route>
