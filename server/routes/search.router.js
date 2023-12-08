@@ -11,6 +11,8 @@ router.get("/", async (req, res) => {
     try {
       // Query Giphy search API
       const results = await axios.get("https://api.giphy.com/v1/gifs/search", {
+        // the params option in this is turned into the "?api_key=...&q=..."
+        // part of the URL.
         params: {
           api_key: process.env.GIPHY_API_KEY,
           q: q,

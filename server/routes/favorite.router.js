@@ -22,10 +22,12 @@ router.post("/", async (req, res) => {
   const giphy_id = req.body.id;
   // Require the ID to be set
   if (!giphy_id) {
-    res.sendStatus(400);
+    res.sendStatus(400); // HTTP code 400 is a "Bad Request"
     return;
   }
   try {
+    // The giphy_id is a string from Giphy's API present on each Gif object
+    // https://developers.giphy.com/docs/api/schema/#gif-object
     await pool.query(
       /*sql*/ `
         INSERT INTO
@@ -44,7 +46,8 @@ router.post("/", async (req, res) => {
 // update a favorite's associated category
 router.put("/:id", async (req, res) => {
   try {
-    pool.query(
+    // ID is our internal ID, not the Giphy ID
+    await pool.query(
       /*sql*/ `
         UPDATE "favorites"
         SET "category_id" = $1
