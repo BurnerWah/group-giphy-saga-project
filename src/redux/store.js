@@ -18,6 +18,7 @@ import rootSaga from "./sagas";
  * @param {("SET_SEARCH_RESULTS"|"CLEAR_SEARCH_RESULTS")} action.type The type of the action to dispatch
  * @param {any[]} action.payload The payload of the action to dispatch
  * @returns {any[]} The new state of the reducer
+ * @see {@link https://developers.giphy.com/docs/api/schema/#gif-object Giphy Gif Object}
  */
 const searchResults = (state = [], action) => {
   switch (action.type) {
